@@ -6,7 +6,9 @@ export class AppService {
   async generatePdf(html: string) {
     const browser = await chromium.launch({
       headless: true,
-      args: ['--no-sandbox', '--disable-setuid-sandbox'], 
+      args: ['--no-sandbox', '--disable-setuid-sandbox'],
+      executablePath: process.env.PLAYWRIGHT_BROWSERS_PATH || undefined,
+ 
     });
 
     const page = await browser.newPage();
